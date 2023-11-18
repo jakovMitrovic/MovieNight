@@ -5,7 +5,6 @@ import Movie from '../Movie/Movie';
 
 const MovieList = ({movies, numberOfMovies=18}) => {
     const classes = useStyles();
-    //console.log(movies)
     
   return (
     <Grid container className={classes.moviesContainer}>

@@ -5,10 +5,9 @@ import { TextField, Button, Container, Stack } from '@mui/material';
 import { Link } from "react-router-dom"
 import useStyles from './styles';
 import { useNavigate } from 'react-router-dom';
-
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { styled } from '@mui/material/styles';
-
+import {useCookies} from 'react-cookie';
 
 const Register = ({userID = "", usernameP = "", passwordP="", firstNameP = "", lastNameP = "", emailP="", dateOfBirthP="", imageP ="", type="register"}) => {
     const classes = useStyles();
@@ -20,6 +19,7 @@ const Register = ({userID = "", usernameP = "", passwordP="", firstNameP = "", l
     const [dateOfBirth, setDateOfBirth] = useState(dateOfBirthP)
     const [image, setImage ] = useState(imageP)
     const navigate = useNavigate();
+    const [cookies, _] = useCookies(["access_token"])
 
 
     function convertToBase64(file){
@@ -69,7 +69,7 @@ const Register = ({userID = "", usernameP = "", passwordP="", firstNameP = "", l
     const handleUpdate = async (e) => {
         e.preventDefault()
         try {
-            await axios.put("http://localhost:3001/auth/edit", {userID, username, password, image, firstName, lastName, email, dateOfBirth })
+            await axios.put("http://localhost:3001/auth/edit", {userID, username, password, image, firstName, lastName, email, dateOfBirth }, {headers: {authorization: cookies.access_token}})
             alert("success")
         } catch (err) {
             console.error(err)

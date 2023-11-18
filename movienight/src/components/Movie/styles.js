@@ -4,18 +4,6 @@ export default makeStyles((theme)=>({
     movieBox:{
         
         padding: '10px',
-        '&:hover': {
-            //border:"solid",
-            //borderRadius:"10px",
-            //boxShadow: '4px 4px 4px 4px #ff4155',
-            //background: 'rgb(255,65,85)',
-            //background: 'radial-gradient(circle, rgba(255,65,85,1) 40%, rgba(70,70,70,1) 70%)',
-            //background:'#ff4155'
-            //transition: 'all 0.5s ease',
-            
-
-            
-        }
     },
     links:{
         alignItems:'center',

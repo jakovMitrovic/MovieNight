@@ -16,6 +16,7 @@ import { useGetUserDetailsQuery } from "../../services/TMDB"
 
 
 
+
 const Navbar = () => {
   
   const [mobileOpen, setmobileOpen] = useState(false)
@@ -24,6 +25,10 @@ const Navbar = () => {
   const userID = UseGetUserID();
   const { data, isFetching, error } = useGetUserDetailsQuery(userID);
   const navigate = useNavigate();
+  const [cookies, _] = useCookies(["access_token"])
+
+
+
 
   
   return (
@@ -38,17 +43,13 @@ const Navbar = () => {
             </IconButton>
           )}
           
-  {!isMobile && <Search />}
+    {!isMobile && <Search />}
     {isMobile && <Search />}
 
          
-          {!window.localStorage.getItem("userID") ? (
-            <>
+          { (cookies.access_token === '' || cookies.access_token === undefined || !userID)  && (<Link className={classes.login} to="/login">Login</Link>)}
 
-              <Link className={classes.login} to="/login">Login</Link>
-            </>
-
-          ) : (
+          {cookies.access_token !== undefined && (userID && (
             <>
              
               <Button color="inherit" 
@@ -64,7 +65,7 @@ const Navbar = () => {
 
             </>
 
-          )}
+          ))}
 
         </Toolbar>
 

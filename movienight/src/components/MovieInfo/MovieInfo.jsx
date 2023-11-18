@@ -15,6 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import {useCookies} from 'react-cookie'
 
 
+
 const MovieInfo = () => {
   const { id } = useParams();
   const userID = UseGetUserID();
@@ -26,46 +27,42 @@ const MovieInfo = () => {
   const [isSaved, setSaved] = useState(false)
   const [cookies, _] = useCookies(["access_token"])
 
+
   
 
 
 
   useEffect(() => {
+    console.log(cookies.access_token)
     window.scrollTo(0, 0)
     
     const interval = setInterval(() => {
-      axios.get(`http://localhost:3001/movies/savedMovies/id/${userID}`, {headers: {authorization: cookies.access_token}})
+        if(cookies.access_token !== undefined){
+        axios.get(`http://localhost:3001/movies/savedMovies/id/${userID}`, {headers: {authorization: cookies.access_token}})
         .then(res => {
-          //console.log(res?.data.savedMovies)
+          
           if(res?.data.savedMovies.includes(id)){
             setSaved(true)
           }else{
-           setSaved(false)
+            setSaved(false)
           }
-        
+          
         })
         .catch(err => console.error(err));
-    }, 500); //set your time here. repeat every 5 seconds
-  
-    return () => clearInterval(interval);
-    
+
+      }
+
+      }, 1000); 
+      
+      return () => clearInterval(interval);
+      
     
     
   }, [])
   
 
   
-  const buttons = () =>{
-    console.log(id)
-    console.log(userData?.savedMovies)
-    console.log(savedMovies)
-    if(userData?.savedMovies.includes(id)){
-      setSaved(true)
-      console.log("sadrzi")
-    }else{setSaved(false)}
 
-
-  }
 
   const removeSaved = async () => {
     const id = data?.id
@@ -113,8 +110,7 @@ const MovieInfo = () => {
 
 
         <Grid container className={classes.containerSpaceAround}>
-          {/* <Box display='flex' justifyContent='center' alignItems='center'>
-            </Box> */}
+          
           <Grid item sm={12} lg={4}>
             <Link size='5rem' className={classes.backBtn} to={'/'}><ArrowBack className={classes.backArr} /> Go Back</Link>
             <img
@@ -150,12 +146,14 @@ const MovieInfo = () => {
                   {`${genre.name}  `}
                 </Link>
               ))}
-              {userID &&
+              {cookies.access_token !== undefined && (userID && 
                 (isSaved && (<Link className={classes.favButton} onClick={removeSaved}><StarRateIcon />Remove from favourites</Link>))
+              )
               }
 
-              {userID &&
+              {cookies.access_token !== undefined  && (userID && 
                 (!isSaved && (<Link className={classes.favButton} onClick={saveMovie}><StarBorderIcon />Add to favourites</Link>))
+              )
               }
 
 

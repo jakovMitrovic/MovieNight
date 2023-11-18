@@ -25,11 +25,11 @@ const Poster = ({movies}) => {
           if(x[slideIndex-1] !== undefined){
               x[slideIndex-1].style.opacity = "100%";
           }
-          setTimeout(carousel, 15000); // Change image every 10 seconds
+          setTimeout(carousel, 15000); 
         }
     },[])
 
-    //if (!movie) return null;
+    
 
    
     return (
@@ -66,28 +66,3 @@ const Poster = ({movies}) => {
 export default Poster;
 
 
-
-
-
-
-// <Box component={Link} to={`/movie/${movie.id}`} className={classes.featuredCardContainer}>
-//             <Card className={classes.card} classes={{ root: classes.cardRoot }}>
-//                 <CardMedia
-//                     media="picture"
-//                     alt={movie.title}
-//                     image={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
-//                     title={movie.title}
-//                     className={classes.cardMedia}
-//                 />
-//                 <Box padding="20px">
-//                     <CardContent className={classes.cardContent} classes={{ root: classes.cardContentRoot }}>
-//                         <Typography variant="h5" gutterBottom>{movie.title}</Typography>
-//                         <Box display="flex" align="center">
-//                             <Rating readOnly value={movie.vote_average / 2}></Rating>
-//                             <Typography variant="subtitle1" gutterBottom style={{ marginLeft: '10px' }}>{movie?.vote_average}/10 </Typography>
-//                         </Box>
-//                         <Typography variant="body2">{movie.overview}</Typography>
-//                     </CardContent>
-//                 </Box>
-//             </Card>
-//         </Box>

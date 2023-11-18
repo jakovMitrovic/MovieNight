@@ -57,24 +57,13 @@ const Profile = () => {
     return () => clearInterval(interval);
 
 
-    // try {
-    //   const res = axios.get(`http://localhost:3001/movies/savedMovies/${id}`)
-    //   setMovies(res?.data)
-    //   console.log(res?.data)
-    // } catch (error) {
-    //   console.log(error)
-    // }
-    //getSaved();
+
 
 
 
   }, []);
 
-  // const getSaved = async()=>{
-  // }
-
-
-
+ 
 
   return (
 
@@ -151,17 +140,7 @@ const Profile = () => {
         ))}
         </Grid>
 
-        {/* <Grid container className={classes.moviesContainer}>
-        {movies ===  undefined ? (
-        <Box className={classes.loading} display='flex' justifyContent='center' alignItems='center'>
-          <CircularProgress size='5rem'></CircularProgress>
-        </Box>) : (
-          movies.savedMovies?.map((movie, i) => (
-            <Movie key={i} movie={movie} i={i} />
-          )))
-          
-          }
-        </Grid> */}
+      
 
       </Box>
 
