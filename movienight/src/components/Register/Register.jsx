@@ -161,9 +161,9 @@ const Register = ({userID = "", usernameP = "", passwordP="", firstNameP = "", l
                         sx={{ mb: 4 }}
                     />
                 </Stack>
-                    <Button className={classes.btn2}component="label" variant="contained" required sx={{ mr: 20 }} startIcon={<CloudUploadIcon />}>
+                    <Button className={classes.btn2}component="label" variant="contained" sx={{ mr: 20 }} required startIcon={<CloudUploadIcon />}>
                         Upload Profile Picture
-                        <VisuallyHiddenInput  type="file" accept='.jpeg, .png, .jpg' onChange={e => handleImageUpload(e)}  name='image'/>
+                        <VisuallyHiddenInput  type="file"   accept='.jpeg, .png, .jpg' onChange={e => handleImageUpload(e)}  name='image'/>
                     </Button>
 
                 {type === "register" ? (

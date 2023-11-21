@@ -104,6 +104,7 @@ export default makeStyles((theme)=>({
         paddingLeft:"2%",
         paddingTop:"2%",
         borderRadius:'10px',
+       
         
     },
     backArr:{
@@ -123,6 +124,22 @@ export default makeStyles((theme)=>({
     recommendedTitle:{
         textShadow: '0px 0px 24px rgba(255, 65, 85, 0.99)',
       
+    },
+
+    reviews:{
+        padding:'30px',
+        borderRadius:"10px"
+        
+        
+    },
+    
+    review:{
+        backgroundColor:"#3c5082",
+        marginBottom:"15px",
+        padding:"20px",
+        borderRadius:"10px"
+
+
     }
    
 

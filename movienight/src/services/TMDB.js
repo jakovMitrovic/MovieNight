@@ -39,7 +39,7 @@ export const tmdbApi = createApi({
         }),
 
         getMovie: builder.query({
-            query: (id) => `https://api.themoviedb.org/3/movie/${id}?append_to_response=videos,credits&api_key=${tmdbApiKey}`
+            query: (id) => `https://api.themoviedb.org/3/movie/${id}?append_to_response=videos,credits,reviews&api_key=${tmdbApiKey}`
         }),
         getRecommended: builder.query(({
             query: ({movie_id, list}) =>`https://api.themoviedb.org/3/movie/${movie_id}/${list}?api_key=${tmdbApiKey}`

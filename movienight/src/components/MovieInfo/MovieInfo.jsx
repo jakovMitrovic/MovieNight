@@ -85,6 +85,8 @@ const MovieInfo = () => {
     const poster_path = data?.poster_path
     const vote_average = data?.vote_average
 
+    console.log(data?.reviews)
+
     axios.post("http://localhost:3001/movies", { id, title, poster_path, vote_average }, {headers: {authorization: cookies.access_token}})
     setSaved(true)
     try {
@@ -184,13 +186,9 @@ const MovieInfo = () => {
             </Grid>
 
           </Grid>
-          {/* <Grid item sm={12} lg={4}>
-        <img
-          className={classes.poster}
-          src={`https://image.tmdb.org/t/p/w500/${data?.poster_path}`}
-          alt={data?.title}
-        />
-      </Grid> */}
+      
+      
+       
           {data?.videos?.results?.length > 0 && (
 
             <Container className={classes.trailerContainer}>
@@ -199,7 +197,7 @@ const MovieInfo = () => {
                   title="YouTube video"
                   allow={"autoplay"}
                   allowFullScreen
-                  //className="ratio ratio-16x9"
+                  
                   className={classes.trailer}
                 >
 
@@ -219,6 +217,18 @@ const MovieInfo = () => {
           </Box>
         </Grid>
       )}
+      <Grid className={classes.reviews} style={{maxHeight: 400, overflow: 'auto'}} item sm={24} lg={8}>
+          <Typography variant='h3' align="center" gutterBottom>Reviews</Typography>
+          {data?.reviews.results.map((review)=>(
+          <Box className={classes.review}>
+            <Typography variant='h4' gutterBottom>{review.author}</Typography>
+            <Typography color="#A9A9A9"  gutterBottom>{review.created_at.split('T')[0]}</Typography>
+            <Typography>{review.content}</Typography>
+          </Box>
+
+          ))}
+
+        </Grid>
     </>
   )
 
